@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+
+    <body>
+        <div class="background-sky">
+        </div>
+        <canvas id="myCanvas"></canvas>
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            var canvass = document.getElementById('myCanvas');
+            canvass.width = $(window).width();
+            canvass.height = $(window).height();
+            var ctx = canvass.getContext('2d');
+            
+            var i = 0;
+            var j = 250;
+            var k = 50;
+            setInterval (function() {
+                ctx.clearRect(0, 0, $(window).width(), 400)
+                drawCloud(i, 75);
+                i += 8;
+                if (i > $(window).width()) {
+                    i = 0;
+                }
+                drawCloud(j, 200);
+                j += 5;
+                if (j > $(window).width()) {
+                    j = 0;
+                }
+                drawCloud(k, 300);
+                k += 3;
+                if (k > $(window).width()) {
+                    k = 0;
+                }
+            }, 30);
+            
+            function drawCloud(x, y) {
+                ctx.beginPath();
+                ctx.arc(x, y, 25, 0, 2 * Math.PI);
+                ctx.arc(x + 25, y - 15, 25, 0, 2 * Math.PI);
+                ctx.arc(x + 55, y - 15, 30, 0, 2 * Math.PI);
+                ctx.arc(x + 75, y, 25, 0, 2 * Math.PI);
+                ctx.fillStyle = 'rgb(255, 255, 255)';
+                ctx.fillRect(x, y, 75, 25);
+                ctx.fill();
+            }
+            
+            
+            
+            ctx.beginPath();
+            var midX = $(window).width() / 2;
+            ctx.arc(midX, 2000, 1600, Math.PI, 2 * Math.PI);
+            ctx.fillStyle = 'rgb(0, 150, 0)';
+            ctx.fill();
+            
+            
+            /*ctx.fillStyle = 'rgb(200, 0, 0)';
+            ctx.fillRect(10, 10, 50, 50);
+            ctx.clearRect(10, 10, 50, 50);
+
+            ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+            ctx.fillRect(30, 30, 50, 50);
+            */
+            /*var i = 0;
+            setInterval (function() {
+                ctx.fillStyle = 'rgba(255, 0, 0)';
+                ctx.fillRect(0, 0, i, 300);
+                i += 0.5;
+            }, 30);*/
+            
+        </script>
+    </body>
+</html>
